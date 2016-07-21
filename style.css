@@ -1,0 +1,16 @@
+/*
+Theme Name: The Politic
+Theme URI: 
+Description: The Politic's 2016 site redesign.
+Author: Adisa Malik and Ana Barros
+Author URI: 
+Version: 1.0
+Tags: the-politic, bootstrap
+
+License: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+License URI: http://creativecommons.org/licenses/by-sa/3.0/
+
+*/
+
+@import url('bootstrap/css/bootstrap.min.css'); 
+@import url('politic-style.css'); 
