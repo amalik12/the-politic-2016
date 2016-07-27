@@ -2,6 +2,34 @@ var currentIndex = 0;
 var numArticles = 4;
 var $ = jQuery.noConflict();
 $(document).ready(function () {
+	// reading progress code
+	if ($( "#post" ).length) {
+		$('#progress').css('width', "0%");
+		var winHeight = $(window).height(),
+		docHeight = $('#post-end').offset().top;
+		max = docHeight - winHeight;
+		$('#progress').css('transition', 'all 0.1s linear 0s');
+		$(document).on('scroll', function() {
+			value = $(window).scrollTop();
+
+			var position = value / max * 100;
+			$('#progress').css('width', position + "%");
+		});
+
+		$(window).on('resize', function() {
+			winHeight = $(window).height(),
+			docHeight = $('#post-end').offset().top;
+
+			max = docHeight - winHeight;
+			value =  $(window).scrollTop();
+
+			var position = value / max * 100;
+			$('#progress').css('width', position + "%");
+		});
+	}
+
+
+	//homepage carousel code
 	var images = $('.front-carousel-image').not($('.front-carousel-image').eq(currentIndex));
 	images.css('opacity', 0);
 	var timer = setInterval(cycleGallery, 4500);
@@ -27,6 +55,7 @@ $(document).ready(function () {
 		}
 	})
 });
+
 
 function cycleGallery(index) {
 	if (index === undefined) {

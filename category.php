@@ -16,13 +16,14 @@
 			<div class="navbar-links navbar-left">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="nav-link">Latest</span></a>
 				<span class="nav-link-divider"></span>
-				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link active">Blog</span></a>
+				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link <?php $title = single_cat_title("", false); if ($title == "The Politic Blog"): echo "active"; endif;?>">Blog</span></a>
 				<span class="nav-link-divider"></span>
 				<span class="nav-link">Magazine</span>
 				<span class="nav-link-divider"></span>
 				<span class="nav-link">About</span>
 			</div>
-		</div><!--/.navbar-collapse -->
+		</div>
+		<div class="navbar-progress"></div>
 	</nav>
 
 	<div class="container">

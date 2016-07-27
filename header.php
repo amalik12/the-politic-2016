@@ -8,7 +8,12 @@
     <link rel="shortcut icon" href="http://thepolitic.org/wp-content/uploads/2016/06/favicon.png">
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-    <title><?php bloginfo('name'); ?> | <?php is_front_page() ? bloginfo('description') : wp_title(''); ?></title>
+    <title><?php if (is_front_page()): ?>
+        <?php bloginfo('name'); ?> | <?php bloginfo('description') ?>
+        <?php else: ?>
+            <?php wp_title(''); ?> | <?php bloginfo('name'); ?>
+        <?php endif; ?>
+    </title>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
