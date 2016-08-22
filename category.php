@@ -18,7 +18,13 @@
 				<span class="nav-link-divider"></span>
 				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link <?php $title = single_cat_title("", false); if ($title == "The Politic Blog"): echo "active"; endif;?>">Blog</span></a>
 				<span class="nav-link-divider"></span>
-				<span class="nav-link">Magazine</span>
+				<span class="dropdown">
+					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a class="inactive">Current Issue</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
+					</ul>
+				</span>
 				<span class="nav-link-divider"></span>
 				<span class="nav-link">About</span>
 			</div>
@@ -48,7 +54,7 @@
 							$cat_name = $cat->name;
 							$slug = $cat->slug;
  		  				?>
-						<?php wp_reset_query(); $picks = get_cat_id("Editors' Picks"); $cur_cat_id = get_query_var( 'cat' ); $query_array = array( 'category_name' => $slug.'+editors-picks', 'posts_per_page' => 1 ); query_posts($query_array); ?>
+						<?php wp_reset_query(); $query_array = array( 'category_name' => $slug.'+editors-picks', 'posts_per_page' => 1 ); query_posts($query_array); ?>
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $feat_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); $do_not_duplicate[] = $post->ID; ?>
 						<div class="item active">
 							<a href="<?php the_permalink(); ?>">
@@ -62,7 +68,7 @@
 						</div>
 						<?php endwhile; ?>
 	        			<?php endif; ?>
-						<?php wp_reset_query();  $picks = get_cat_id("Editors' Picks"); $cur_cat_id = get_query_var( 'cat' ); $query_array = array( 'category_name' => $slug.'+editors-picks', 'posts_per_page' => 3, 'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
+						<?php wp_reset_query(); $query_array = array( 'category_name' => $slug.'+editors-picks', 'posts_per_page' => 3, 'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
 						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $feat_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
 						<div class="item">
 							<a href="<?php the_permalink(); ?>">

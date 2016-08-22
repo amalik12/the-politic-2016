@@ -5,6 +5,12 @@
 // 	remove_action('wp_head', '_admin_bar_bump_cb');
 // }
 
+function custom_login_logo() {
+    echo '<style type="text/css">
+        h1 a { background-image:url(' . get_template_directory_uri() . '/images/Logo-small-01.png) !important; }
+    </style>';
+}
+add_action('login_head', 'custom_login_logo');
 
 function wpbootstrap_scripts_with_jquery()
 {

@@ -19,14 +19,19 @@
           <img class='front-sidebar-logo' src="<?php echo get_bloginfo('template_directory');?>/images/Logo-01.png">
         </a>
         <ul class="front-sidebar-menu">
-          <li class="active">Latest</li>
-          <li>Magazine</li>
-          <li>Blog</li>
+          <a id='latest-link' href="#latest-articles"><li class="active">Latest</li></a>
+          <a id='magazine-link' data-toggle="collapse" href="#magCollapse" aria-expanded="false" aria-controls="magCollapse"><li>Magazine</li></a>
+          <div class="collapse" id="magCollapse">
+            <li class="inactive">Current Issue</li>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues"><li>Past Issues</li></a>
+          </div>
+          <a href="http://thepolitic.org/category/politic-blog/"><li>Blog</li></a>
           <li>About</li>
         </ul>
       </div>
 
       <div class="col-md-4 front-carousel-menu">
+        <div class="collapse" id="carouselMenuSpacer">collapse</div>
         <?php query_posts( 'category_name=editors-picks&posts_per_page=4' ); ?>
         <?php if ( $front_carousel_query->have_posts() ) : while ( $front_carousel_query->have_posts() ) : $front_carousel_query->the_post(); ?>
         <?php
@@ -39,7 +44,7 @@
         if (count($colon_split) > 1) {
           $title = $colon_split[0];
           $subtitle = $colon_split[1];
-        } elseif (count($question_split) > 1) {
+        } elseif (count($question_split) > 1 and $question_split[1] != ""){
           $title = $question_split[0]."?";
           $subtitle = $question_split[1];
         } else {
@@ -53,7 +58,6 @@
             $subtitle = $excerpt_sentences[0].".";
           }
         }
-
         ?>
           <a href="<?php the_permalink(); ?>">
             <div class="front-carousel-item">
@@ -67,7 +71,7 @@
 
     </div>
 
-    <div class="row">
+    <div id='latest-articles' class="row">
       <div class="col-md-6 col-md-offset-3">
         <a class='category-menu-item-link' role="tab" data-toggle="tab" href="#all"><span class="category-menu-item text-center">
           All

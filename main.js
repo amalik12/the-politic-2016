@@ -26,8 +26,30 @@ $(document).ready(function () {
 			var position = value / max * 100;
 			$('#progress').css('width', position + "%");
 		});
+
+		$('span[style]').removeAttr('style');
+		$('#post a[style]').removeAttr('style');
+		var introText = $('#post p').first().text().split(' ').slice(0,3).join(' ');
+		$('#post p').first().text($('#post p').first().text().replace(introText, ""));
+		$('#post p').first().prepend($.parseHTML("<span class='post-intro'>" + introText + " </span>"))
 	}
 
+	$('#latest-link').click(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+	      var target = $(this.hash);
+	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	      if (target.length) {
+	        $('html, body').animate({
+	          scrollTop: target.offset().top
+	        }, 600);
+	        return false;
+	      }
+	    }
+  	});
+
+  	$('#magazine-link').click(function() {
+	    $('#carouselMenuSpacer').collapse('toggle');
+  	});
 
 	//homepage carousel code
 	var images = $('.front-carousel-image').not($('.front-carousel-image').eq(currentIndex));
