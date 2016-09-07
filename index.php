@@ -26,12 +26,17 @@
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues"><li>Past Issues</li></a>
           </div>
           <a href="http://thepolitic.org/category/politic-blog/"><li>Blog</li></a>
-          <li>About</li>
+          <a id='about-link' data-toggle="collapse" href="#aboutCollapse" aria-expanded="false" aria-controls="aboutCollapse"><li>About</li>
+          <div class="collapse" id="aboutCollapse">
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team"><li>Masthead</li></a>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors"><li>Our Sponsors</li></a>
+          </div>
         </ul>
       </div>
 
       <div class="col-md-4 front-carousel-menu">
         <div class="collapse" id="carouselMenuSpacer">collapse</div>
+        <div class="collapse" id="carouselMenuSpacer1">collapse</div>
         <?php query_posts( 'category_name=editors-picks&posts_per_page=4' ); ?>
         <?php if ( $front_carousel_query->have_posts() ) : while ( $front_carousel_query->have_posts() ) : $front_carousel_query->the_post(); ?>
         <?php
@@ -97,6 +102,7 @@
     <div class="tab-content">
     <div class="row article-list tab-pane fade in active" id="all" role="tabpanel" >
       <div class="col-md-4 text-right">
+      <a href="http://history.yale.edu/"><img class="square" src="<?php echo get_bloginfo('template_directory');?>/ads/HIST.jpg"></a>
       <?php query_posts('posts_per_page=5' ); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
@@ -105,10 +111,11 @@
             <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>"><span class="article-author"><?php the_author(); ?></span></a><span class="article-date"> | <?php the_time('n.j.Y'); ?></span>
           </div>
         <?php endwhile; ?>
-        <?php endif; ?>
+        <?php endif; ?><a class="ad-vertical-1-link" href="http://judaicstudies.yale.edu/"><img class="tall ad-vertical-1" src="<?php echo get_bloginfo('template_directory');?>/ads/JDST-01.jpg"></a>
+        <!-- <img class="tall" src="<?php echo get_bloginfo('template_directory');?>/ads/WGSS_250x550.jpg"> -->
       </div>
       <div class="col-md-4 text-center">
-        <?php $query_array = array( 'posts_per_page' => 3 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
+        <?php $query_array = array( 'posts_per_page' => 5 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; $feat_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
           <div class="article-link">
             <?php if ($feat_image != ''): ?><a href="<?php the_permalink(); ?>"><img class='article-image' src="<?php echo $feat_image; ?>"></a><?php endif; ?>
@@ -120,12 +127,13 @@
         <?php endif; ?>
       </div>
       <div class="col-md-4 text-left">
-        <div class="front-magazine"><img src="<?php echo get_bloginfo('template_directory');?>/images/magazine_current.png"><br>
+<!--         <div class="front-magazine"><img src="<?php echo get_bloginfo('template_directory');?>/images/magazine_current.png"><br>
           <b class="front-magazine-intro">NEW ISSUE:</b><br>
           <b class="front-magazine-intro">February 2016</b><br>
           <span class="front-magazine-desc">Read it </span><span class="front-magazine-link">here</span>
-        </div>
-        <?php $query_array = array( 'posts_per_page' => 3 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
+        </div> -->
+        <a class="ad-vertical-2-link" href="http://wgss.yale.edu/"><img class="tall ad-vertical-2" src="<?php echo get_bloginfo('template_directory');?>/ads/WGSS_250x550.jpg"></a>
+        <?php $query_array = array( 'posts_per_page' => 8 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
             <a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
@@ -139,6 +147,7 @@
 
     <div class="row article-list tab-pane fade" id="local" role="tabpanel" >
       <div class="col-md-4 text-right">
+      <a href="http://history.yale.edu/"><img class="square" src="<?php echo get_bloginfo('template_directory');?>/ads/HIST.jpg"></a>
       <?php query_posts('category_name=local&posts_per_page=5' ); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
@@ -162,11 +171,12 @@
         <?php endif; ?>
       </div>
       <div class="col-md-4 text-left">
-        <div class="front-magazine"><img src="<?php echo get_bloginfo('template_directory');?>/images/magazine_current.png"><br>
+<!--         <div class="front-magazine"><img src="<?php echo get_bloginfo('template_directory');?>/images/magazine_current.png"><br>
           <b class="front-magazine-intro">NEW ISSUE:</b><br>
           <b class="front-magazine-intro">February 2016</b><br>
           <span class="front-magazine-desc">Read it </span><span class="front-magazine-link">here</span>
-        </div>
+        </div> -->
+        <a href="http://wgss.yale.edu/"><img class="tall" src="<?php echo get_bloginfo('template_directory');?>/ads/WGSS_250x550.jpg"></a>
         <?php $query_array = array( 'category_name' => 'local', 'posts_per_page' => 3 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
@@ -181,6 +191,7 @@
 
     <div class="row article-list tab-pane fade" id="national" role="tabpanel" >
       <div class="col-md-4 text-right">
+      <a href="http://history.yale.edu/"><img class="square" src="<?php echo get_bloginfo('template_directory');?>/ads/HIST.jpg"></a>
       <?php query_posts('category_name=national&posts_per_page=5' ); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
@@ -191,6 +202,7 @@
         <?php endwhile; ?>
         <?php endif; ?>
       </div>
+
       <div class="col-md-4 text-center">
         <?php $query_array = array( 'category_name' => 'national', 'posts_per_page' => 3 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; $feat_image = wp_get_attachment_url( get_post_thumbnail_id($post->ID) ); ?>
@@ -204,11 +216,7 @@
         <?php endif; ?>
       </div>
       <div class="col-md-4 text-left">
-        <div class="front-magazine"><img src="<?php echo get_bloginfo('template_directory');?>/images/magazine_current.png"><br>
-          <b class="front-magazine-intro">NEW ISSUE:</b><br>
-          <b class="front-magazine-intro">February 2016</b><br>
-          <span class="front-magazine-desc">Read it </span><span class="front-magazine-link">here</span>
-        </div>
+        <a href="http://wgss.yale.edu/"><img class="tall" src="<?php echo get_bloginfo('template_directory');?>/ads/WGSS_250x550.jpg"></a>
         <?php $query_array = array( 'category_name' => 'national', 'posts_per_page' => 3 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
@@ -223,6 +231,7 @@
 
     <div class="row article-list tab-pane fade" id="international" role="tabpanel">
       <div class="col-md-4 text-right">
+      <a href="http://history.yale.edu/"><img class="square" src="<?php echo get_bloginfo('template_directory');?>/ads/HIST.jpg"></a>
       <?php query_posts('category_name=world&posts_per_page=5' ); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">
@@ -246,11 +255,7 @@
         <?php endif; ?>
       </div>
       <div class="col-md-4 text-left">
-        <div class="front-magazine"><img src="<?php echo get_bloginfo('template_directory');?>/images/magazine_current.png"><br>
-          <b class="front-magazine-intro">NEW ISSUE:</b><br>
-          <b class="front-magazine-intro">February 2016</b><br>
-          <span class="front-magazine-desc">Read it </span><span class="front-magazine-link">here</span>
-        </div>
+        <a href="http://wgss.yale.edu/"><img class="tall" src="<?php echo get_bloginfo('template_directory');?>/ads/WGSS_250x550.jpg"></a>
         <?php $query_array = array( 'category_name' => 'world', 'posts_per_page' => 3 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; ?>
           <div class="article-link">

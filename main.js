@@ -47,9 +47,30 @@ $(document).ready(function () {
 	    }
   	});
 
+
   	$('#magazine-link').click(function() {
 	    $('#carouselMenuSpacer').collapse('toggle');
   	});
+
+  	$('#about-link').click(function() {
+	    $('#carouselMenuSpacer1').collapse('toggle');
+  	});
+
+  	//ad rotation code
+  	var adImages = ['http://thepolitic.org/wp-content/themes/the_politic_2016/ads/JDST-01.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/JDST-02.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/WGSS_250x550.jpg'];
+  	var adLinks = ['http://judaicstudies.yale.edu/', 'http://judaicstudies.yale.edu/', 'http://wgss.yale.edu/'];
+
+  	var ad1_id = Math.floor(Math.random() * adImages.length);
+  	$('.ad-vertical-1').attr('src', adImages[ad1_id]);
+  	$('.ad-vertical-1-link').attr('href', adLinks[ad1_id]);
+
+  	var ad2_id = ad1_id;
+  	while (ad2_id == ad1_id){
+  		ad2_id = Math.floor(Math.random() * adImages.length);
+  	}
+
+  	$('.ad-vertical-2').attr('src', adImages[ad2_id]);
+  	$('.ad-vertical-2-link').attr('href', adLinks[ad2_id]);
 
 	//homepage carousel code
 	var images = $('.front-carousel-image').not($('.front-carousel-image').eq(currentIndex));

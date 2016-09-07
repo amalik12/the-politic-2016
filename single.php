@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
 <?php get_header(); ?>
 <body style="padding-top: 45px;">
-	<nav class="navbar navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top" role='navigation'>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span>
@@ -15,9 +15,9 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<div class="navbar-links navbar-left">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="nav-link active">Latest</span></a>
-				<span class="nav-link-divider"></span>
+				<span class="nav-link-divider hidden-xs"></span>
 				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link">Blog</span></a>
-				<span class="nav-link-divider"></span>
+				<span class="nav-link-divider hidden-xs"></span>
 				<span class="dropdown">
 					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -25,22 +25,32 @@
 						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
 					</ul>
 				</span>
-				<span class="nav-link-divider"></span>
-				<span class="nav-link">About</span>
-				<span class="nav-link-divider"></span>
-				<span class="nav-article-title"><? echo "‘".single_post_title("", false)."’"; ?></span>
+				<span class="nav-link-divider hidden-xs"></span>
+				<span class="dropdown">
+					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">About</span></a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team">Masthead</a></li>
+            			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors">Our Sponsors</a></li>
+					</ul>
+				</span>
+
 			</div>
 		</div>
+		<span class="navbar-links" >
+			<span class="nav-link-divider hidden-xs"></span>
+			<span class="nav-article-title hidden-xs"><? echo "‘".single_post_title("", false)."’"; ?></span>
+		</span>
+		
 		<div id="progress" class="navbar-progress"></div>
 	</nav>
 	<?php if( have_posts() ) the_post(); ?>
-	<div class="ad-top">
+<!-- 	<div class="ad-top">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-9"><div class="adbox wide"></div></div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<div class="container">
 		<div class="row">
 			<div class="post-container col-md-9">
@@ -52,7 +62,12 @@
 				<hr class="category-title-border post-divider">
 				<div class="author-avatar"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>"><?php echo get_avatar( get_the_author_email(), 68); ?></a></div>
 				<div class="post-info">
-					<div class="author-info">By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>"><span class="author-name"><?php the_author(); ?></span></a></div>
+					<div class="author-info">By <span class="author-name">
+					<?php if ( function_exists( 'coauthors_posts_links' ) ) {
+    						coauthors_posts_links(', ', ' and ');
+							} else {
+   		 						the_author_posts_link();
+   		 					} ?></span></div>
 					<div class="post-date"><?php the_time('F j, Y'); ?></div>
 				</div>
 				<hr class="category-title-border post-divider">
@@ -83,8 +98,8 @@
 				<?php comments_template(); ?>
 			</div>
 			<div class="col-md-3 post-sidebar">
-				<div class="adbox square"></div>
-				<div class="adbox tall"></div>
+<!-- 				<div class="adbox square"></div>
+				<div class="adbox tall"></div> -->
 			</div>
 		</div>
 		

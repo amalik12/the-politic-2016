@@ -1,9 +1,9 @@
 <?php
-// add_action('get_header', 'my_filter_head');
+add_action('get_header', 'my_filter_head');
 
-// function my_filter_head() {
-// 	remove_action('wp_head', '_admin_bar_bump_cb');
-// }
+function my_filter_head() {
+	remove_action('wp_head', '_admin_bar_bump_cb');
+}
 
 function custom_login_logo() {
     echo '<style type="text/css">
@@ -23,4 +23,8 @@ function wpbootstrap_scripts_with_jquery()
 }
 
 add_action( 'wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery' );
+
+add_theme_support( 'post-thumbnails' );
+add_theme_support( 'automatic-feed-links' );
+
 ?>

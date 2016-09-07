@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <?php get_header(); ?>
-<body style="padding-top: 65px;">
-	<nav class="navbar navbar-fixed-top">
+<body style="padding-top: 42px;">
+	<nav class="navbar navbar-default navbar-fixed-top" role='navigation'>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span>
@@ -15,9 +15,9 @@
 		<div id="navbar" class="navbar-collapse collapse">
 			<div class="navbar-links navbar-left">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="nav-link">Latest</span></a>
-				<span class="nav-link-divider"></span>
+				<span class="nav-link-divider hidden-xs"></span>
 				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link <?php $title = single_cat_title("", false); if ($title == "The Politic Blog"): echo "active"; endif;?>">Blog</span></a>
-				<span class="nav-link-divider"></span>
+				<span class="nav-link-divider hidden-xs"></span>
 				<span class="dropdown">
 					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
@@ -25,8 +25,14 @@
 						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
 					</ul>
 				</span>
-				<span class="nav-link-divider"></span>
-				<span class="nav-link">About</span>
+				<span class="nav-link-divider hidden-xs"></span>
+				<span class="dropdown">
+					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">About</span></a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team">Masthead</a></li>
+            			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors">Our Sponsors</a></li>
+					</ul>
+				</span>
 			</div>
 		</div>
 		<div class="navbar-progress"></div>
@@ -36,12 +42,12 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<hr class="category-title-border">
-			</div>
-			<div class="row">
-				<div class="col-md-2 col-md-offset-5 text-center category-title">
+			</div>		
+		</div>
+		<div class="row">
+				<div class="col-md-2 col-md-offset-5 col-xs-4 col-xs-offset-4 text-center category-title">
 					<?php $title = single_cat_title("", false); if ($title == "The Politic Blog"): $title = "The Blog"; endif; echo $title; ?>
 				</div>
-			</div>
 		</div>
 		
 		<div class="row category-carousel">
