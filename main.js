@@ -34,6 +34,7 @@ $(document).ready(function () {
 		$('#post p').first().prepend($.parseHTML("<span class='post-intro'>" + introText + " </span>"))
 	}
 
+
 	$('#latest-link').click(function() {
 	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 	      var target = $(this.hash);
@@ -47,7 +48,7 @@ $(document).ready(function () {
 	    }
   	});
 
-
+  	//front page dropdown menus
   	$('#magazine-link').click(function() {
 	    $('#carouselMenuSpacer').collapse('toggle');
   	});
@@ -57,8 +58,8 @@ $(document).ready(function () {
   	});
 
   	//ad rotation code
-  	var adImages = ['http://thepolitic.org/wp-content/themes/the_politic_2016/ads/JDST-01.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/JDST-02.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/WGSS_250x550.jpg'];
-  	var adLinks = ['http://judaicstudies.yale.edu/', 'http://judaicstudies.yale.edu/', 'http://wgss.yale.edu/'];
+  	var adImages = ['http://thepolitic.org/wp-content/themes/the_politic_2016/ads/JDST-01.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/JDST-02.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/WGSS_250x550.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/African Studies-01.jpg', 'http://thepolitic.org/wp-content/themes/the_politic_2016/ads/ISPS_Dahl Scholars-01.jpg'];
+  	var adLinks = ['http://judaicstudies.yale.edu/', 'http://judaicstudies.yale.edu/', 'http://wgss.yale.edu/', 'http://african.macmillan.yale.edu/', 'http://isps.yale.edu/dahl-research-scholars'];
 
   	var ad1_id = Math.floor(Math.random() * adImages.length);
   	$('.ad-vertical-1').attr('src', adImages[ad1_id]);
@@ -73,8 +74,14 @@ $(document).ready(function () {
   	$('.ad-vertical-2-link').attr('href', adLinks[ad2_id]);
 
 	//homepage carousel code
-	var images = $('.front-carousel-image').not($('.front-carousel-image').eq(currentIndex));
-	images.css('opacity', 0);
+	var image = $('.front-carousel-image').eq(currentIndex);
+	var item = $('.front-carousel-item').eq(currentIndex);
+	item.addClass('active');
+	image.addClass('active');
+	$('.front-carousel-item-mobile .front-article-title').text(item.find('.front-article-title').text());
+	$('.front-carousel-item-mobile').find('p').text(item.find('p').text());
+	$('.mobile-carousel-item').attr('href', item.parent().attr('href'));
+
 	var timer = setInterval(cycleGallery, 4500);
 
 	$('.front-carousel-item').click(function(e) {
@@ -97,6 +104,19 @@ $(document).ready(function () {
 			e.preventDefault();
 		}
 	})
+
+	//mobile layout tweaks
+	if (window.innerWidth <= 767){
+		$(".front-carousel").height(window.innerWidth * .7);
+	}
+
+	$(window).on('resize', function() {
+		if (window.innerWidth <= 767){
+			$(".front-carousel").height(window.innerWidth * .7);
+		} else {
+			$(".front-carousel").removeAttr('style');
+		}
+	});
 });
 
 
@@ -108,11 +128,14 @@ function cycleGallery(index) {
 	var items = $('.front-carousel-item');
 
 	items.eq(currentIndex).removeClass('active');
-	images.eq(currentIndex).css('opacity', '0').css('visibility', 'hidden');
+	images.eq(currentIndex).removeClass('active');
 	if (index == currentIndex) {
 		index = (index + 1) % numArticles;
 	}
 	currentIndex = index;
 	items.eq(index).addClass('active');
-	images.eq(index).css('opacity', '1').css('visibility', 'visible');
+	images.eq(index).addClass('active');
+	$('.front-carousel-item-mobile .front-article-title').text(items.eq(index).find('.front-article-title').text());
+	$('.front-carousel-item-mobile').find('p').text(items.eq(index).find('p').text());
+	$('.mobile-carousel-item').attr('href', items.eq(index).parent().attr('href'));
 }

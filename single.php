@@ -2,6 +2,14 @@
 <html <?php language_attributes(); ?>>
 <?php get_header(); ?>
 <body style="padding-top: 45px;">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<nav class="navbar navbar-default navbar-fixed-top" role='navigation'>
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -37,8 +45,8 @@
 			</div>
 		</div>
 		<span class="navbar-links" >
-			<span class="nav-link-divider hidden-xs"></span>
-			<span class="nav-article-title hidden-xs"><? echo "‘".single_post_title("", false)."’"; ?></span>
+			<span class="nav-link-divider hidden-xs hidden-sm"></span>
+			<span class="nav-article-title hidden-xs hidden-sm"><? echo single_post_title("", false); ?></span>
 		</span>
 		
 		<div id="progress" class="navbar-progress"></div>
@@ -57,7 +65,7 @@
 				<?php if ( has_post_thumbnail() ):?>
 					<div class="post-featured-image"><?php the_post_thumbnail(); ?></div>
 				<?php endif; ?>
-				<h1><? echo "“".single_post_title("", false)."”"; ?></h1>
+				<h1><? echo single_post_title("", false); ?></h1>
 				<h2><? the_excerpt(); ?></h2>
 				<hr class="category-title-border post-divider">
 				<div class="author-avatar"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ), get_the_author_meta( 'user_nicename' ) ); ?>"><?php echo get_avatar( get_the_author_email(), 68); ?></a></div>
@@ -79,6 +87,7 @@
 						<img src="<?php echo get_bloginfo('template_directory');?>/images/twitter.png">
 					</a>
 					<a href="https://plus.google.com/share?url=<?php the_permalink() ?>" onclick="window.open('https://plus.google.com/share?url=<?php the_permalink() ?>', 'newwindow', 'width=600, height=450'); return false;"><img src="<?php echo get_bloginfo('template_directory');?>/images/google-plus.png"></a>
+					<div class="fb-like" data-href="<?php the_permalink() ?>" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
 				</div>
 				<div id="post" class="post-content">
 					<?php
