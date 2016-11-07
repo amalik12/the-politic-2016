@@ -21,7 +21,7 @@
         <span class="dropdown">
           <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a class="inactive">Current Issue</a></li>
+            <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
             <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
           </ul>
         </span>
@@ -51,17 +51,17 @@
             <img class='front-sidebar-logo' src="<?php echo get_bloginfo('template_directory');?>/images/Logo-01.png">
           </a>
           <ul class="front-sidebar-menu">
-            <a id='latest-link' href="#latest-articles"><li class="active visible-sm-inline">Latest</li></a>
+            <a href="#latest-articles"><li class="active visible-sm-inline">Latest</li></a>
             <span class="dropdown">
               <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><li class="visible-sm-inline">Magazine</li></a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a class="inactive">Current Issue</a></li>
+                <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
                 <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
               </ul>
             </span>
             <a href="http://thepolitic.org/category/politic-blog/"><li class="visible-sm-inline">Blog</li></a>
         <span class="dropdown">
-          <a id='about-link' data-toggle="dropdown" href="#" aria-expanded="false"  aria-haspopup="true" aria-expanded="false"><li class="visible-sm-inline">About</li>
+          <a data-toggle="dropdown" href="#" aria-expanded="false"  aria-haspopup="true" aria-expanded="false"><li class="visible-sm-inline">About</li>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team">Masthead</a></li>
               <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors">Our Sponsors</a></li>
@@ -137,11 +137,11 @@
           <a id='latest-link' href="#latest-articles"><li class="active">Latest</li></a>
           <a id='magazine-link' data-toggle="collapse" href="#magCollapse" aria-expanded="false" aria-controls="magCollapse"><li>Magazine</li></a>
           <div class="collapse" id="magCollapse">
-            <li class="inactive">Current Issue</li>
+            <a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/"><li>Current Issue</li></a>
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues"><li>Past Issues</li></a>
           </div>
           <a href="http://thepolitic.org/category/politic-blog/"><li>Blog</li></a>
-          <a id='about-link' data-toggle="collapse" href="#aboutCollapse" aria-expanded="false" aria-controls="aboutCollapse"><li>About</li>
+          <a id='about-link' data-toggle="collapse" href="#aboutCollapse" aria-expanded="false" aria-controls="aboutCollapse"><li>About</li></a>
           <div class="collapse" id="aboutCollapse">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team"><li>Masthead</li></a>
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors"><li>Our Sponsors</li></a>
@@ -149,7 +149,7 @@
         </ul>
       </div>
     </div>
-
+    <div class="row"><a href="/election-map"><img style="width: 100%; margin-bottom: 50px;" src="<?php echo get_bloginfo('template_directory');?>/ads/election-map-promo.png"></a></div>
     <div id='latest-articles' class="row">
       <div class="col-md-6 col-md-offset-3 text-center">
         <a class='category-menu-item-link' role="tab" data-toggle="tab" href="#all"><span class="category-menu-item text-center">
@@ -206,6 +206,12 @@
           <b class="front-magazine-intro">February 2016</b><br>
           <span class="front-magazine-desc">Read it </span><span class="front-magazine-link">here</span>
         </div> -->
+        <form class='searchbar-container' role="search" method="get" id="searchform" class="searchform" action="http://thepolitic.org/">
+            <div>
+              <span class="search-icon glyphicon glyphicon-search" aria-hidden="true"></span>
+              <input class='searchbar' value="" name="s" id="s" placeholder="Search..." type="text">
+            </div>
+        </form>
         <a class="ad-vertical-2-link" href="http://wgss.yale.edu/"><img class="tall ad-vertical-2" src="<?php echo get_bloginfo('template_directory');?>/ads/WGSS_250x550.jpg"></a>
         <?php $query_array = array( 'posts_per_page' => 6 ,'post__not_in' => $do_not_duplicate ); query_posts($query_array); ?>
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); if ( $post->ID == $do_not_duplicate ) continue; $do_not_duplicate[] = $post->ID; ?>

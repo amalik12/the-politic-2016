@@ -37,37 +37,30 @@
 		</div>
 		<div class="navbar-progress"></div>
 	</nav>
-	<?php 
-		$curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author));
+	<?php
+		global $query_string;
+
+		$query_args = explode("&", $query_string);
+		$search_query = array();
+
+		if( strlen($query_string) > 0 ) {
+			foreach($query_args as $key => $string) {
+				$query_split = explode("=", $string);
+				$search_query[$query_split[0]] = urldecode($query_split[1]);
+			}
+		}
+		$search_query['posts_per_page'] = 1;
+		$search = new WP_Query($search_query);
 	?>
 	<div class="container">
-		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<hr class="category-title-border">
-			</div>
-			<div class="row">
-				<div class="col-md-2 col-md-offset-5 col-xs-4 col-xs-offset-4 text-center category-title">
-					Author
-				</div>
-			</div>
-		</div>
 		
 	
 		<div class="row author-page-content">
 	      <div class="col-md-8 col-md-offset-1">
-	      	<h2 class="author-page-name"><?php echo $curauth->display_name; ?></h2>
-		    <div class="author-page-avatar"><?php echo get_avatar( $curauth->user_email, 150); ?></div>
-		    <h4 class="author-page-bio"><?php echo $curauth->description; ?></h4>
+	      	<h2 class="author-page-name">Search results for "<?php echo esc_html( get_search_query( false ) ); ?>"</h2>
 		    <hr>
 		    <div class="author-page-feat">
-		    	        <?php $args = array(
-    			'post_type' => 'post',
-    			'posts_per_page' => 1,
-    			'post_status' => 'publish',
-    		'author_name' => $curauth->user_login,
-			);?>
-	        <?php $author_query = new WP_Query( $args ); ?>
-		    <?php if($author_query->have_posts()): while ( $author_query->have_posts() ) : $author_query->the_post(); $feat_image = get_the_post_thumbnail_url(); ?>
+		    <?php if($search->have_posts()): while ( $search->have_posts() ) : $search->the_post(); $feat_image = get_the_post_thumbnail_url(); ?>
 		    	<img class="author-page-feat-image" src="<?php echo $feat_image; ?>">
 		    	<a href="<?php the_permalink(); ?>"><h1><?php echo get_the_title(); ?></h1></a>
 		    	<h2><? echo get_the_excerpt(); ?></h2>
@@ -75,15 +68,8 @@
 			<?php endwhile; ?>
 	        <?php endif; ?>
 	        </div>
-	        <?php $args = array(
-    			'post_type' => 'post',
-    			'posts_per_page' => 8,
-    			'offset' => 1,
-    			'post_status' => 'publish',
-    		'author_name' => $curauth->user_login,
-			);?>
-	        <?php $author_query = new WP_Query( $args ); ?>
-		    <?php if($author_query->have_posts()): while ( $author_query->have_posts() ) : $author_query->the_post(); $feat_image = get_the_post_thumbnail_url(); ?>
+	        <?php $search_query['posts_per_page'] = 14; $search_query['offset'] = 1; $search = new WP_Query($search_query); ?>
+		    <?php if($search->have_posts()): while ( $search->have_posts() ) : $search->the_post(); $feat_image = get_the_post_thumbnail_url(); ?>
 		    	<div class="author-page-article">
 
 			    	<img class="author-page-article-image <?php if(!has_post_thumbnail()):?>invisible<?php endif ?>" src="<?php echo $feat_image; ?>">

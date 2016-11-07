@@ -21,7 +21,7 @@
 				<span class="dropdown">
 					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a class="inactive">Current Issue</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
 						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
 					</ul>
 				</span>

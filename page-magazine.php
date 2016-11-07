@@ -48,10 +48,45 @@
 				</div>
 			</div>
 		</div>
+		<div class="row" >
+		  <div class="col-md-4 col-md-offset-4">
+		  	<img class='magazine-image' src="<?php echo get_bloginfo('template_directory');?>/images/issue1-2016.jpg">
+		  </div>
+	    </div>
 		<div class="row page-content" >
-		  <?php while ( have_posts() ) : the_post(); ?> 
-	      <?php the_content(); ?>
-	      <?php endwhile; ?>
+			<div class="col-md-4 col-md-offset-4 text-center">
+				<?php $args = array(
+	    			'post_type' => 'post',
+	    			'posts_per_page' => 1,
+	    			'post_status' => 'publish',
+	    			'category_name' => '2016-2017-issue-i+cover'
+				);?>
+		        <?php $mag_query = new WP_Query( $args ); ?>
+		        <?php if($mag_query->have_posts()): while ( $mag_query->have_posts() ) : $mag_query->the_post(); $do_not_duplicate[] = $post->ID;?> 
+		    		<div class="mag-page-article cover">
+		    			<h4 class="mag-cover-header text-uppercase">Cover</h4>
+		    			<a href="<?php the_permalink(); ?>"><h4 class="mag-article-title text-uppercase"><?php the_title(); ?></h4></a>
+		    			<span class="mag-author"><?php the_author_posts_link(); ?></span>
+		    		</div>
+				<?php endwhile; ?>
+				<?php endif; ?>
+
+				<?php $args = array(
+	    			'post_type' => 'post',
+	    			'posts_per_page' => 30,
+	    			'post_status' => 'publish',
+	    			'category_name' => '2016-2017-issue-i',
+	    			'post__not_in' => $do_not_duplicate
+				);?>
+		        <?php $mag_query = new WP_Query( $args ); ?>
+		        <?php if($mag_query->have_posts()): while ( $mag_query->have_posts() ) : $mag_query->the_post(); ?> 
+		    		<div class="mag-page-article">
+		    			<a href="<?php the_permalink(); ?>"><h4 class="mag-article-title text-uppercase"><?php the_title(); ?></h4></a>
+		    			<span class="mag-author"><?php the_author_posts_link(); ?></span>
+		    		</div>
+				<?php endwhile; ?>
+				<?php endif; ?>
+	      </div>
 	    </div>
 	</div>
 	<?php get_footer(); ?>

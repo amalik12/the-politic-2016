@@ -29,7 +29,7 @@
 				<span class="dropdown">
 					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
 					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a class="inactive">Current Issue</a></li>
+						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
 						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
 					</ul>
 				</span>
@@ -91,15 +91,6 @@
 				</div>
 				<div id="post" class="post-content">
 					<?php
-					// $content = get_the_content();
-					// $start = wp_trim_words( get_the_content(), 3, "");
-					// $pos = strpos($content, $start);
-					// if ($pos !== false) {
-					// 	$newstring = str_replace("<span style=\"color: #000000;\">", "<p>", $content);
-					// 	$newstring = str_replace("style=\"color: #000000;\"", "", $newstring);
-					// 	$newstring = str_replace("</span>", "</p>", $newstring);
-					// 	$newstring = str_replace($start, "<span class='post-intro'>".$start." </span>", $newstring);
-					// }
 					the_content();
 					?>
 				</div>

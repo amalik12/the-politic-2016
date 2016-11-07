@@ -104,6 +104,13 @@
 }
 
 @font-face {
+	font-family: 'Akzidenz Grotesk';
+	src: url('fonts/Akzidenz Grotesk/AkzidGroCFFMd.otf') format('opentype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'Coranto 2';
 	src: url('fonts/Coranto2/Coranto2-Regular.otf') format('opentype');
 	font-weight: normal;
@@ -131,6 +138,7 @@ h1 {
 
 h2 {
 	font-family: 'Akzidenz Grotesk', sans-serif;
+	font-weight: 300;
 	font-size: 26px;
 	margin-top: 10px;
 }
@@ -251,6 +259,32 @@ hr {
 	padding-left: 8px;
 	padding-right: 8px;
 }
+
+.searchbar {
+	border: none;
+	border-bottom: 2px solid rgb(51, 51, 51);
+	/*width: 97px;*/
+	transition: 0.3s;
+}
+
+.searchbar:focus {
+	border: none;
+	border-bottom: 2px solid rgb(176, 176, 176);
+}
+
+.searchbar-container {
+	padding: 6px;
+	margin-bottom: 15px;
+	font-size: 18px;
+}
+
+.search-icon {
+	font-size: 22px;
+	float: left;
+	margin-top: 4px;
+	margin-right: 7px;
+}
+
 .navbar {
 	min-height: 30px;
 }
@@ -656,7 +690,7 @@ footer p {
 
 
 .front-header {
-	margin-bottom: 200px;
+	margin-bottom: 70px;
 }
 .front-sidebar {
 	padding-top: 50px;
@@ -1033,7 +1067,41 @@ footer p {
 	margin-top: 50px;
 }
 
+.magazine-image {
+	width: 100%;
+	margin-top: 40px;
+	border: 1px solid #BCBCBC;
+	padding: 25px;
+}
 
+.mag-page-article {
+	margin-bottom: 30px;
+}
+
+.mag-article-title {
+	font-family: 'Akzidenz Grotesk', sans-serif;
+	font-weight: 500;
+	margin-bottom: 6px;
+	margin-top: 6px;
+}
+
+.mag-author {
+	font-family: 'Swift', 'Georgia';
+	font-size: 16px;
+	font-style: italic;
+}
+
+.mag-page-article.cover {
+	border: 1px solid black;
+	padding-top: 14px;
+	padding-bottom: 14px;
+}
+
+.mag-cover-header {
+	font-family: 'Akzidenz Grotesk', sans-serif;
+	font-weight: bold;
+	margin-top: 0px;
+}
 
 @media (max-width: 767px){
 	.category-menu-item {
