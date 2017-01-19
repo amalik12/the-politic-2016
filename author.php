@@ -77,7 +77,7 @@
 	        </div>
 	        <?php $args = array(
     			'post_type' => 'post',
-    			'posts_per_page' => 8,
+    			'posts_per_page' => 30,
     			'offset' => 1,
     			'post_status' => 'publish',
     		'author_name' => $curauth->user_login,

@@ -64,6 +64,10 @@
 			<div class="post-container col-md-9">
 				<?php if ( has_post_thumbnail() ):?>
 					<div class="post-featured-image"><?php the_post_thumbnail(); ?></div>
+					<?php $desc = get_post(get_post_thumbnail_id())->post_content; ?>
+					<?php if ( $desc != '' ):?>
+						<div class="post-featured-image-desc"><?php echo $desc; ?></div>
+					<?php endif;?>
 				<?php endif; ?>
 				<h1><? echo single_post_title("", false); ?></h1>
 				<h2><? the_excerpt(); ?></h2>

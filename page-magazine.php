@@ -50,7 +50,7 @@
 		</div>
 		<div class="row" >
 		  <div class="col-md-4 col-md-offset-4">
-		  	<img class='magazine-image' src="<?php echo get_bloginfo('template_directory');?>/images/issue1-2016.jpg">
+		  	<a href="https://issuu.com/theyalepolitic/docs/finalthepoliticissue3"><img class='magazine-image' src="<?php echo get_bloginfo('template_directory');?>/images/issue3-2016.png"></a>
 		  </div>
 	    </div>
 		<div class="row page-content" >
@@ -59,7 +59,7 @@
 	    			'post_type' => 'post',
 	    			'posts_per_page' => 1,
 	    			'post_status' => 'publish',
-	    			'category_name' => '2016-2017-issue-i+cover'
+	    			'category_name' => '2016-2017-issue-iii+cover'
 				);?>
 		        <?php $mag_query = new WP_Query( $args ); ?>
 		        <?php if($mag_query->have_posts()): while ( $mag_query->have_posts() ) : $mag_query->the_post(); $do_not_duplicate[] = $post->ID;?> 
@@ -75,7 +75,7 @@
 	    			'post_type' => 'post',
 	    			'posts_per_page' => 30,
 	    			'post_status' => 'publish',
-	    			'category_name' => '2016-2017-issue-i',
+	    			'category_name' => '2016-2017-issue-iii',
 	    			'post__not_in' => $do_not_duplicate
 				);?>
 		        <?php $mag_query = new WP_Query( $args ); ?>

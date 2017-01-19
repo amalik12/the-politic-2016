@@ -143,6 +143,13 @@ h2 {
 	margin-top: 10px;
 }
 
+h3 {
+	font-family: 'Gotham', sans-serif;
+	font-weight: 700;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
 h4 {
 	font-family: 'Helvetica', sans-serif;
 	font-weight: bold;
@@ -262,20 +269,24 @@ hr {
 
 .searchbar {
 	border: none;
-	border-bottom: 2px solid rgb(51, 51, 51);
-	/*width: 97px;*/
+	width: 88%;
 	transition: 0.3s;
+	background: transparent;
+	margin-top: 3px;
+	margin-left: 5px;
 }
 
-.searchbar:focus {
-	border: none;
-	border-bottom: 2px solid rgb(176, 176, 176);
+.searchbar::-webkit-input-placeholder, .searchbar::-moz-placeholder{
+	color: orange;
 }
 
 .searchbar-container {
-	padding: 6px;
+	padding: 11px;
 	margin-bottom: 15px;
 	font-size: 18px;
+	background: #d7d7d7;
+	border-radius: 5px;
+	padding-left: 16px;
 }
 
 .search-icon {
@@ -687,10 +698,12 @@ footer p {
 	margin-bottom: 2px;
 }
 
-
-
 .front-header {
-	margin-bottom: 70px;
+	margin-bottom: 200px;
+}
+
+.front-promo {
+	margin-top: -130px;
 }
 .front-sidebar {
 	padding-top: 50px;
@@ -864,6 +877,11 @@ footer p {
 	font-size: 14px;
 }
 
+.load-post-placeholder .article-image {
+	transition: 1s;
+	opacity: 0;
+}
+
 .article-link .article-desc {
 	font-family: 'Swift', 'Times New Roman';
 	font-size: 14px;
@@ -871,6 +889,10 @@ footer p {
 
 .article-link h4 {
 	font-size: 16px;
+}
+
+.article-link:last-child{
+	margin-bottom: 0px;
 }
 
 .article-author {
@@ -903,6 +925,35 @@ footer p {
 
 .article-list {
 	margin-top: 50px;
+}
+
+.load-post-placeholder {
+	margin-bottom: 20px;
+}
+
+.load-post-loading {
+	animation: spin 1s linear infinite;
+	width: 40px;
+	display: none;
+	opacity: 0.8;
+}
+
+#load-post-button {
+	font-size: 20px;
+	color: white;
+	text-transform: uppercase;
+	font-family: "Gotham", sans-serif;
+}
+
+.load-post-button-inner {
+	background: #b3b3b3;
+	padding: 12px;
+	cursor: pointer;
+}
+
+.load-post-button-inner:hover {
+	color: white;
+	background: #dadada;
 }
 
 .category-title-border {
@@ -962,6 +1013,13 @@ footer p {
 .post-featured-image img{
 	width: 100%;
 	height: auto;
+}
+
+.post-featured-image-desc {
+	font-size: 16px;
+	margin-bottom: -12px;
+	font-style: italic;
+	color: #717171;
 }
 
 .author-avatar {
@@ -1060,6 +1118,13 @@ footer p {
 	margin-bottom: 20px;
 }
 
+.ad-header{
+	font-family: 'Gotham', sans-serif;
+	font-weight: 300;
+	text-transform: uppercase;
+	margin-top: 30px;
+}
+
 .wide {
 	width: 100%;
 	height: 100px;
@@ -1076,6 +1141,8 @@ footer p {
 
 .mag-page-article {
 	margin-bottom: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .mag-article-title {
@@ -1102,6 +1169,7 @@ footer p {
 	font-weight: bold;
 	margin-top: 0px;
 }
+
 
 @media (max-width: 767px){
 	.category-menu-item {
@@ -1163,7 +1231,7 @@ footer p {
 	.square {
 		width: 60%;
 		padding: 6px;
-		margin-bottom: 50px;
+		/*margin-bottom: 50px;*/
 		/*height: 250px;*/
 	}
 
@@ -1178,9 +1246,9 @@ footer p {
 
 @media (min-width: 992px){
 	.square {
-		width: 90%;
+		width: 100%;
 		padding: 6px;
-		margin-bottom: 50px;
+		/*margin-bottom: 50px;*/
 		/*height: 250px;*/
 	}
 
@@ -1197,3 +1265,16 @@ footer p {
 	top: 5px;
 	margin-left: 12px;
 }
+
+.no-select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none; 
+	-moz-user-select: none; 
+	-ms-user-select: none;
+	user-select: none; 
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
