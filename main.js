@@ -1,3 +1,4 @@
+// carousel globals
 var currentIndex = 0;
 var numArticles = 4;
 
@@ -15,9 +16,17 @@ var ad2_id = 2 % ads.length
 
 var $ = jQuery.noConflict();
 $(document).ready(function () {
+	$('.searchbar').focus(function() {
+		$('.searchbar-container').addClass('focus')
+	})
+
+	$('.searchbar').blur(function() {
+		$('.searchbar-container').removeClass('focus')
+	})
+
 	// page loading code
-	var offset = 12
-	var pageNum = 1
+	var offset = 12 // number of articles on the page before loading more
+	var pageLength = 15 // number of new articles to load
 	$('#main-articles')
 	.append('<div class="load-post-placeholder"></div>')
 	.append('<div class="text-center" id="load-post-button"><a class="load-post-button-inner no-select">Load More</a><img src="http://thepolitic.org/wp-content/themes/the_politic_2016/images/loading.png" class="load-post-loading"></div>');
@@ -27,16 +36,22 @@ $(document).ready(function () {
 	var $right = $("<div>", {"class": "col-md-4 text-left"})
 	$('.load-post-placeholder').append($row)
 	var articles = []
+	var catId = $('#main-articles').attr("category")
+	var requestURL = '/wp-json/wp/v2/posts?per_page='+ pageLength
+	if (catId != undefined) {
+		requestURL += '&categories=' + catId
+	}
+
 	$('#load-post-button a').click(function() {
 		$('.load-post-button-inner').css('display', 'none')
 		$('.load-post-loading').css('display', 'unset')
 		articles = []
 		$.ajax({
 			type: "GET",
-			url: '/wp-json/wp/v2/posts?per_page=15&offset=' + offset,
+			url: requestURL + '&offset=' + offset,
 			dataType: "json",
 			success: function(data) {
-				for (var i = 0; i < 15; i++) {
+				for (var i = 0; i < pageLength; i++) {
 					articles.push($("<div>", {"class":"article-link"}))
 				}
 				for (var i = 0; i < 6; i++) {
@@ -86,7 +101,7 @@ $(document).ready(function () {
 						
 					})(i)
 				}
-				for (i; i < 15; i++) {
+				for (i; i < pageLength; i++) {
 					(function (i) {
 						$.ajax({
 							type: "GET",
@@ -102,7 +117,7 @@ $(document).ready(function () {
 						})
 					})(i)
 				}
-				offset += 17
+				offset += pageLength
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 			},
@@ -115,7 +130,7 @@ $(document).ready(function () {
 				for (i; i < 9; i++) {
 					$mid.append(articles[i])
 				}
-				for (i; i < 15; i++) {
+				for (i; i < pageLength; i++) {
 					$right.append(articles[i])
 				}
 				$('.load-post-placeholder .article-list').append($left)
@@ -157,7 +172,7 @@ $(document).ready(function () {
 		$('#post p').first().prepend($.parseHTML("<span class='post-intro'>" + introText + " </span>"))
 	}
 
-
+	// clicking 'latest' on the homepage takes you to the article list
 	$('#latest-link').click(function() {
 		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 			var target = $(this.hash);
@@ -171,7 +186,7 @@ $(document).ready(function () {
 		}
 	});
 
-  	//front page dropdown menus
+  	//front page dropdown menus, carousel article list slides down to make room for dropdowns
   	$('#magazine-link').click(function() {
   		$('#carouselMenuSpacer').collapse('toggle');
   	});
@@ -180,6 +195,7 @@ $(document).ready(function () {
   		$('#carouselMenuSpacer1').collapse('toggle');
   	});
 
+  	//ad rotation
   	$('.ad-vertical-1').attr('src', ads[ad1_id].src);
   	$('.ad-vertical-1-link').attr('href', ads[ad1_id].url);
   	$('.ad-vertical-2').attr('src', ads[ad2_id].src);

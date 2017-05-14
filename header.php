@@ -1,3 +1,4 @@
+<?php // header template ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,3 +22,10 @@
     <?php wp_enqueue_script("jquery"); ?>
     <?php wp_head(); ?>
 </head>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5422246651794508",
+    enable_page_level_ads: true
+  });
+</script>

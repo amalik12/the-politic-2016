@@ -28,17 +28,23 @@ $ajaxurl .= admin_url( 'admin-ajax.php');
 
 add_action( 'wp_enqueue_scripts', 'wpbootstrap_scripts_with_jquery' );
 
+// adds HTML meta tags to properly display article previews on Facebook and Twitter
 function add_article_meta() {
-
     if (is_single()){
         global $post;
         $author = get_the_author_meta('display_name', $post->post_author);
         $title = $post->post_title;
+        $excerpt = $post->post_excerpt;
         $image  = wp_get_attachment_url( get_post_thumbnail_id($post->ID) );
         echo "<meta name=\"author\" content=\"$author\">";
         echo "<meta property=\"og:type\" content=\"article\">";
         echo "<meta property=\"og:title\" content=\"$title\">";
         echo "<meta property=\"og:image\" content=\"$image\">";
+        echo "<meta name=\"twitter:card\" content=\"summary\" />";
+        echo "<meta name=\"twitter:site\" content=\"@yalepolitic\" />";
+        echo "<meta name=\"twitter:title\" content=\"$title\"/>";
+        echo "<meta name=\"twitter:description\" content=\"$excerpt\" />";
+        echo "<meta name=\"twitter:image\" content=\"$image\" />";
     }
 }
 
@@ -46,8 +52,9 @@ add_action( 'wp_enqueue_scripts', 'add_article_meta' );
 
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'custom-header', array('video' => true) );
 
-add_action('wp_footer', 'add_googleanalytics');
+add_action('wp_head', 'add_googleanalytics');
 function add_googleanalytics() { ?>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

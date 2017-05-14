@@ -1,42 +1,11 @@
+<?php // search results page ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <?php get_header(); ?>
 <body style="padding-top: 65px;">
-	<nav class="navbar navbar-default navbar-fixed-top" role='navigation'>
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_bloginfo('template_directory');?>/images/Logo-small-01.png"></a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<div class="navbar-links navbar-left">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="nav-link">Latest</span></a>
-				<span class="nav-link-divider hidden-xs"></span>
-				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link active">Blog</span></a>
-				<span class="nav-link-divider hidden-xs"></span>
-				<span class="dropdown">
-					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
-					</ul>
-				</span>
-				<span class="nav-link-divider hidden-xs"></span>
-				<span class="dropdown">
-					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">About</span></a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team">Masthead</a></li>
-            			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors">Our Sponsors</a></li>
-					</ul>
-				</span>
-			</div>
-		</div>
-		<div class="navbar-progress"></div>
-	</nav>
+	<?php //load navbar from navbar.php
+	 get_template_part( 'navbar' ); ?>
+
 	<?php
 		global $query_string;
 
@@ -53,10 +22,13 @@
 		$search = new WP_Query($search_query);
 	?>
 	<div class="container">
-		
-	
 		<div class="row author-page-content">
 	      <div class="col-md-8 col-md-offset-1">
+		    <form class='searchbar-container' role="search" method="get" id="searchform" class="searchform" action="http://thepolitic.org/">
+			    <span class="search-icon glyphicon glyphicon-search" aria-hidden="true"></span>
+			    <input class='searchbar' value="" name="s" id="s" placeholder="Search articles and authors..." type="text">
+			</form>
+			<br></br>
 	      	<h2 class="author-page-name">Search results for "<?php echo esc_html( get_search_query( false ) ); ?>"</h2>
 		    <hr>
 		    <div class="author-page-feat">
@@ -68,7 +40,7 @@
 			<?php endwhile; ?>
 	        <?php endif; ?>
 	        </div>
-	        <?php $search_query['posts_per_page'] = 14; $search_query['offset'] = 1; $search = new WP_Query($search_query); ?>
+	        <?php $search_query['posts_per_page'] = 30; $search_query['offset'] = 1; $search = new WP_Query($search_query); ?>
 		    <?php if($search->have_posts()): while ( $search->have_posts() ) : $search->the_post(); $feat_image = get_the_post_thumbnail_url(); ?>
 		    	<div class="author-page-article">
 

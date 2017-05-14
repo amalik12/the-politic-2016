@@ -274,7 +274,7 @@ $(function() {
         modal.find('.modal-title').text(name)
         var body = modal.find('.modal-body')
         body.text('')
-        var students = ['Student 1', 'Student 2', 'Student 3', 'Student 4', 'Student 5']
+        var students = ['Student 1', 'Student 2', 'Student 3', 'Student 4', 'Student 5', 'Student 6']
         for (var i = 0; i < students.length; i++) {
           if (stateData[curid][students[i]] != '') {
             var name = $("<h4>");

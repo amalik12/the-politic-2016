@@ -1,3 +1,4 @@
+<?php // article page template ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <?php get_header(); ?>
@@ -10,47 +11,10 @@
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
-	<nav class="navbar navbar-default navbar-fixed-top" role='navigation'>
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_bloginfo('template_directory');?>/images/Logo-small-01.png"></a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<div class="navbar-links navbar-left">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="nav-link active">Latest</span></a>
-				<span class="nav-link-divider hidden-xs"></span>
-				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link">Blog</span></a>
-				<span class="nav-link-divider hidden-xs"></span>
-				<span class="dropdown">
-					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
-					</ul>
-				</span>
-				<span class="nav-link-divider hidden-xs"></span>
-				<span class="dropdown">
-					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">About</span></a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team">Masthead</a></li>
-            			<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors">Our Sponsors</a></li>
-					</ul>
-				</span>
+	
+	<?php //load navbar from navbar.php
+	 get_template_part( 'navbar' ); ?>
 
-			</div>
-		</div>
-		<span class="navbar-links" >
-			<span class="nav-link-divider hidden-xs hidden-sm"></span>
-			<span class="nav-article-title hidden-xs hidden-sm"><? echo single_post_title("", false); ?></span>
-		</span>
-		
-		<div id="progress" class="navbar-progress"></div>
-	</nav>
 	<?php if( have_posts() ) the_post(); ?>
 <!-- 	<div class="ad-top">
 		<div class="container">
@@ -62,6 +26,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="post-container col-md-9">
+				<?php // display featured image and image description, description is taken from 'description' field in Wordpress for the image ?>
 				<?php if ( has_post_thumbnail() ):?>
 					<div class="post-featured-image"><?php the_post_thumbnail(); ?></div>
 					<?php $desc = get_post(get_post_thumbnail_id())->post_content; ?>
@@ -69,6 +34,10 @@
 						<div class="post-featured-image-desc"><?php echo $desc; ?></div>
 					<?php endif;?>
 				<?php endif; ?>
+				<?php // display tag boxes if a post fits a certain category ?>
+				<?php $tag_list = ['opinion']; $post_categories = get_the_category(); foreach ( $post_categories as $category ): if (in_array($category->slug, $tag_list)):?>
+				<a href="/category/<?php echo $category->slug ?>"><div class="post-tag"><?php echo $category->name ?></div></a>
+				<?php break; endif; endforeach; ?>
 				<h1><? echo single_post_title("", false); ?></h1>
 				<h2><? the_excerpt(); ?></h2>
 				<hr class="category-title-border post-divider">
@@ -91,7 +60,7 @@
 						<img src="<?php echo get_bloginfo('template_directory');?>/images/twitter.png">
 					</a>
 					<a href="https://plus.google.com/share?url=<?php the_permalink() ?>" onclick="window.open('https://plus.google.com/share?url=<?php the_permalink() ?>', 'newwindow', 'width=600, height=450'); return false;"><img src="<?php echo get_bloginfo('template_directory');?>/images/google-plus.png"></a>
-					<div class="fb-like" data-href="<?php the_permalink() ?>" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+					<div class="fb-like hidden-xs" data-href="<?php the_permalink() ?>" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
 				</div>
 				<div id="post" class="post-content">
 					<?php

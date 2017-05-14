@@ -1,3 +1,4 @@
+<?php // custom template for 2016 election map feature ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -27,41 +28,8 @@
 </head>
 
 <body style="padding-top: 65px;">
-	<nav class="navbar navbar-default navbar-fixed-top" role='navigation'>
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php echo get_bloginfo('template_directory');?>/images/Logo-small-01.png"></a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<div class="navbar-links navbar-left">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><span class="nav-link active">Latest</span></a>
-				<span class="nav-link-divider hidden-xs"></span>
-				<a href="http://thepolitic.org/category/politic-blog/"><span class="nav-link">Blog</span></a>
-				<span class="nav-link-divider hidden-xs"></span>
-				<span class="dropdown">
-					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">Magazine</span></a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>magazine/">Current Issue</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>past-issues">Past Issues</a></li>
-					</ul>
-				</span>
-				<span class="nav-link-divider hidden-xs"></span>
-				<span class="dropdown">
-					<a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="nav-link">About</span></a>
-					<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-team">Masthead</a></li>
-						<li><a href="<?php echo esc_url( home_url( '/' ) ); ?>our-sponsors">Our Sponsors</a></li>
-					</ul>
-				</span>
-			</div>
-		</div>
-		<div class="navbar-progress"></div>
-	</nav>
+	<?php //load navbar from navbar.php
+	 get_template_part( 'navbar' ); ?>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
